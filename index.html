@@ -167,6 +167,10 @@ canvas.ecg.small { height: 46px; margin: 4px 0 0; }
 .chart-block { display: flex; flex-direction: column; gap: 8px; }
 .chart-block + .chart-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
 .card .chart-title { font-family: var(--font-display); font-weight: 700; font-size: .98rem; margin: 0; color: var(--ink); }
+.pill { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .72rem; white-space: nowrap; color: #7a4d00; background: #fff4d6; border: 1px solid var(--mark); padding: 4px 10px; border-radius: 999px; }
+.pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 0 rgba(232,154,0,.55); animation: pulse 2s ease-out infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(232,154,0,.55); } 70% { box-shadow: 0 0 0 7px rgba(232,154,0,0); } 100% { box-shadow: 0 0 0 0 rgba(232,154,0,0); } }
+@media (prefers-reduced-motion: reduce) { .pill i { animation: none; } }
 /* Background rows */
 .rows { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
 .rw { display: grid; grid-template-columns: 230px 1fr; gap: 22px; padding: 16px 20px; border-top: 1px solid var(--line); }
@@ -424,7 +428,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       <div><b>AI-HOPE multi-agent LLM</b><span>Three AI agents (Clarifier, Planner, Verifier) that answer clinical and genomic questions asked in plain English. I added a vLLM layer so the agents share one cached prompt.</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
       <div><b>FPGA MLP accelerator</b><span>Digit recognition on a Zybo Z7 FPGA. 52,650 parameters quantized to INT8, about 51 KB.</span><a href="https://github.com/UShah1996/240_mlp_fpga">Code →</a></div>
       <div><b>16-bit CPU in software</b><span>Emulator in C99 with my own instruction set, a two-pass assembler, and memory-mapped I/O.</span><a href="https://github.com/UShah1996/cpu-design">Code →</a></div>
-      <div><b>QuadKey vacation rentals</b><span>Booking app on FastAPI, PostgreSQL, React, and AWS. I own data and infrastructure. In progress.</span><span class="tags">team of 4</span></div>
+      <div><b>QuadKey vacation rentals</b><span>Booking app on FastAPI, PostgreSQL, React, and AWS. I own data and infrastructure.</span><span class="pill"><i></i>Building now · Scrum team of 4</span></div>
       <div><b>Other learnings</b><span>An autograd engine and a character-level language model, both from scratch.</span><span><a href="https://github.com/UShah1996/micrograd">micrograd</a> · <a href="https://github.com/UShah1996/makemore-bigram">makemore</a></span></div>
     </div>
   </div>
