@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101935'/%3E%3Crect x='12' y='40' width='40' height='9' fill='%23ffd166'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23fff'%3EUS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a bright, short page. The hero pairs the pitch with a playable scheduler (her master's project).
    One saffron highlighter stroke marks what matters; everything else is ink on cool white. */
@@ -30,7 +30,7 @@
   --violet: #8a5cf6;
   --danger: #d6334a;
   --ok: #12805a;
-  --font-headline: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-headline: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -57,7 +57,7 @@ a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline
 /* Hero */
 .hero .container { display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px; align-items: center; padding-top: 36px; padding-bottom: 48px; }
 .eyebrow { font-family: var(--font-mono); font-size: .78rem; color: var(--accent); margin: 0 0 14px; }
-h1 { font-family: var(--font-headline); font-weight: 400; font-size: clamp(2.7rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -.01em; margin: 0 0 18px; text-wrap: balance; }
+h1 { font-family: var(--font-headline); font-weight: 700; font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.12; letter-spacing: -.03em; margin: 0 0 18px; text-wrap: balance; }
 .sub { color: var(--muted); margin: 0 0 22px; max-width: 34em; font-size: 1.04rem; }
 .sub strong { color: var(--ink); font-weight: 600; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
@@ -158,6 +158,15 @@ canvas.ecg.small { height: 46px; margin: 4px 0 0; }
 .hb .track { height: 12px; }
 .hb b { font-family: var(--font-mono); font-weight: 500; font-size: .74rem; color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
 .hb.pick span { color: var(--ink); font-weight: 600; }
+.proj { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.what { margin: 2px 0 0; display: flex; flex-direction: column; }
+.what div { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: .92rem; color: var(--ink); line-height: 1.45; }
+.what div:first-child { border-top: 0; padding-top: 2px; }
+.what dt { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 3px; }
+.what dd { margin: 0; }
+.chart-block { display: flex; flex-direction: column; gap: 8px; }
+.chart-block + .chart-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.card .chart-title { font-family: var(--font-display); font-weight: 700; font-size: .98rem; margin: 0; color: var(--ink); }
 /* Background rows */
 .rows { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
 .rw { display: grid; grid-template-columns: 230px 1fr; gap: 22px; padding: 16px 20px; border-top: 1px solid var(--line); }
@@ -230,6 +239,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
   .more div { grid-template-columns: 1fr; gap: 2px; }
   .pair { grid-template-columns: 88px 1fr; }
   .hb { grid-template-columns: 96px 1fr 52px; font-size: .74rem; }
+  .what div { grid-template-columns: 1fr; gap: 2px; }
   .sim { padding: 16px; }
 }
 </style>
@@ -317,15 +327,18 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
     <div class="grid">
 
       <article class="card wide">
-        <div>
-          <span class="label">AFib screening from wearable ECG</span>
-          <h3>CardioWatch</h3>
-          <canvas class="ecg" aria-hidden="true"></canvas>
-          <p>Screens for AFib, a hidden cause of stroke, from wearable ECG. I tested a deep model and a simple heartbeat-timing model on devices neither had seen.</p>
-          <p><strong>Finding:</strong> the deep model wins in the lab but swings on new devices. The simple one varies about 3 times less.</p>
+        <div class="proj">
+          <span class="label">Health AI · live demo</span>
+          <h3>CardioWatch: AFib screening from wearable ECG</h3>
+          <dl class="what">
+            <div><dt>What it does</dt><dd>Screens for atrial fibrillation (AFib), a hidden cause of stroke, from wearable heart readings like the Apple Watch's.</dd></div>
+            <div><dt>What I did</dt><dd>Trained a deep model and a simple heartbeat-timing model, then tested both on 4 device datasets neither had seen.</dd></div>
+            <div><dt>Result</dt><dd>The deep model wins in the lab but drops on new devices. The simple one varies about 3 times less.</dd></div>
+          </dl>
           <div class="foot"><span class="tags">PyTorch · XGBoost · SHAP · MLflow · Streamlit</span><span><a href="https://cardiowatch-spring2026.streamlit.app">Live demo →</a> &nbsp; <a href="https://github.com/UShah1996/cardiowatch">Code →</a></span></div>
         </div>
-        <div>
+        <div class="chart-block">
+          <p class="chart-title">How well each model spots AFib, by dataset</p>
           <div class="legend"><span><i style="background:var(--accent)"></i>Timing model (RR + RF)</span><span><i style="background:var(--amber)"></i>CNN-LSTM</span></div>
           <div class="pairs" role="img" aria-label="AUC by test cohort for the timing model and the CNN-LSTM. Hospital hold-out 0.935 and 0.949. Apple Watch 0.792 and 0.642. MIT-BIH Holter 0.871 and 0.773. CinC 2017 0.810 and 0.811. Long-Term AF 0.873 and 0.935.">
             <div class="pair"><span>Hospital hold-out</span><div class="two"><div class="ln"><div class="track"><u style="width:87%;background:var(--accent)"></u></div><b>0.935</b></div><div class="ln"><div class="track"><u style="width:89.8%;background:var(--amber)"></u></div><b>0.949</b></div></div></div>
@@ -334,55 +347,81 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
             <div class="pair"><span>CinC 2017 AliveCor</span><div class="two"><div class="ln"><div class="track"><u style="width:62%;background:var(--accent)"></u></div><b>0.810</b></div><div class="ln"><div class="track"><u style="width:62.2%;background:var(--amber)"></u></div><b>0.811</b></div></div></div>
             <div class="pair"><span>Long-Term AF</span><div class="two"><div class="ln"><div class="track"><u style="width:74.6%;background:var(--accent)"></u></div><b>0.873</b></div><div class="ln"><div class="track"><u style="width:87%;background:var(--amber)"></u></div><b>0.935</b></div></div></div>
           </div>
-          <p class="cap">AUC on each cohort. Bars run from 0.5 (chance) to 1.0. The Apple Watch set is small (54 recordings).</p>
+          <p class="cap">AUC score: 0.5 is a coin flip, 1.0 is perfect. Higher is better. The Apple Watch set is small (54 recordings).</p>
         </div>
       </article>
 
       <article class="card wide">
-        <div>
+        <div class="proj">
           <span class="label">Platform and security · AWS · team of 2</span>
           <h3>Self-healing fraud detection</h3>
-          <p>Approves, reviews or declines each card payment in real time, spots when fraud patterns change, and swaps in a retrained model with no downtime. I built and secured the platform.</p>
-          <div class="nums"><span class="num"><b>590K</b> real payments</span><span class="num"><b>0 of 43,200</b> lost when a server died</span><span class="num"><b>2,240</b> attack tests passed</span></div>
+          <dl class="what">
+            <div><dt>What it does</dt><dd>Approves, reviews or declines each card payment in real time, notices when fraud patterns change, and swaps in a retrained model with no downtime.</dd></div>
+            <div><dt>What I did</dt><dd>Built and secured the platform on AWS: services, streaming, storage, Kubernetes and login security.</dd></div>
+            <div><dt>Result</dt><dd>Lost 0 of 43,200 payments when a server died, and passed 2,240 attack tests. Tested on 590K real payments.</dd></div>
+          </dl>
           <div class="foot"><span class="tags">AWS EC2 · Kubernetes · Kafka · Cassandra · Grafana</span><a href="https://github.com/manishav26/Fraud-Detection-Platform">Code →</a></div>
         </div>
         <div>
-          <div class="hbars" role="img" aria-label="Payments scored per second. Laptop cluster 30. AWS 3-node cluster 150 within all speed targets. AWS 8 cores peak about 250. AWS 16 cores about 450.">
+        <div class="chart-block">
+          <p class="chart-title">Payments handled per second</p>
+          <div class="hbars" role="img" aria-label="Payments handled per second. Laptop cluster 30. AWS 3 nodes 150. AWS 8 cores about 250 at peak. AWS 16 cores about 450.">
             <div class="hb"><span>Laptop cluster</span><div class="track"><u style="width:6.7%;background:var(--line)"></u></div><b>30/s</b></div>
             <div class="hb pick"><span>AWS, 3 nodes</span><div class="track"><u style="width:33.3%;background:var(--accent)"></u></div><b>150/s</b></div>
             <div class="hb"><span>AWS, 8 cores (peak)</span><div class="track"><u style="width:55.6%;background:var(--amber)"></u></div><b>~250/s</b></div>
             <div class="hb"><span>AWS, 16 cores</span><div class="track"><u style="width:100%;background:var(--amber)"></u></div><b>~450/s</b></div>
           </div>
-          <p class="cap">Payments scored per second. At 150/s on AWS, 95% got an answer in 97 ms.</p>
+          <p class="cap">Higher is better. AWS runs used a 3-node cluster, then larger machines.</p>
+        </div>
+        <div class="chart-block">
+          <p class="chart-title">Time to answer 95% of payments</p>
+          <div class="hbars" role="img" aria-label="95th percentile response time. Laptop cluster at 30 per second 188 ms. AWS 3 nodes at 150 per second 97 ms.">
+            <div class="hb"><span>Laptop, 30/s</span><div class="track"><u style="width:100%;background:var(--line)"></u></div><b>188 ms</b></div>
+            <div class="hb pick"><span>AWS, 150/s</span><div class="track"><u style="width:51.6%;background:var(--accent)"></u></div><b>97 ms</b></div>
+          </div>
+          <p class="cap">Lower is better. Faster even while handling 5 times the traffic.</p>
+        </div>
         </div>
       </article>
 
-      <article class="card span2">
-        <span class="label">Zero-shot search</span>
-        <h3>HyDE at 100K passages</h3>
-        <p>Drafts a likely answer first, then finds real passages that match it, with no labeled data. I tested 6 index sizes to find the best trade-off.</p>
-        <div class="hbars" role="img" aria-label="Recall at 10 by index size. 14.3 MB 0.78. 11.1 MB 0.71, chosen. 9.5 MB 0.67. 7.9 MB 0.60. 7.2 MB 0.58. 5.6 MB 0.46. Full index is 307 MB.">
-          <div class="hb"><span>14.3 MB index</span><div class="track"><u style="width:78.2%;background:var(--line)"></u></div><b>0.78</b></div>
-          <div class="hb pick"><span>11.1 MB (chosen)</span><div class="track"><u style="width:70.7%;background:var(--accent)"></u></div><b>0.71</b></div>
-          <div class="hb"><span>9.5 MB</span><div class="track"><u style="width:67.3%;background:var(--line)"></u></div><b>0.67</b></div>
-          <div class="hb"><span>7.9 MB</span><div class="track"><u style="width:60.4%;background:var(--line)"></u></div><b>0.60</b></div>
-          <div class="hb"><span>7.2 MB</span><div class="track"><u style="width:57.9%;background:var(--line)"></u></div><b>0.58</b></div>
-          <div class="hb"><span>5.6 MB</span><div class="track"><u style="width:45.7%;background:var(--line)"></u></div><b>0.46</b></div>
+      <article class="card wide">
+        <div class="proj">
+          <span class="label">Search · zero-shot</span>
+          <h3>HyDE: fast search without labeled data</h3>
+          <dl class="what">
+            <div><dt>What it does</dt><dd>Finds the right passage among 100K documents with no labeled training data, by drafting a likely answer first and searching for text that matches it.</dd></div>
+            <div><dt>What I did</dt><dd>Built the search pipeline and tested 6 index sizes to find the best balance of search quality and memory.</dd></div>
+            <div><dt>Result</dt><dd>An index 96% smaller that still finds 71% of the right passages, answering in 14 ms.</dd></div>
+          </dl>
+          <div class="foot"><span class="tags">FAISS · Contriever · Hugging Face</span><a href="https://github.com/UShah1996/HyDE">Code →</a></div>
         </div>
-        <p class="cap">Share of the right passages found in the top 10 (Recall@10). The uncompressed index is 307 MB.</p>
-        <div class="foot"><span class="tags">FAISS · Contriever</span><a href="https://github.com/UShah1996/HyDE">Code →</a></div>
-      </article>
-
-      <article class="card">
-        <span class="label">Multi-agent LLM system</span>
-        <h3>AI-HOPE</h3>
-        <div class="nums"><span class="num">Clarifier</span><span class="num">→ Planner</span><span class="num">→ Verifier</span></div>
-        <p>Clinical and genomic analysis in plain English. I added a vLLM layer so all three agents share one cached prompt, and each turn only pays for new words.</p>
-        <div class="foot"><span class="tags">vLLM · Llama 3</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
+        <div>
+          <div class="chart-block">
+            <p class="chart-title">Search quality by index size</p>
+            <div class="hbars" role="img" aria-label="Recall at 10 by index size. 14.3 MB 0.78. 11.1 MB 0.71, chosen. 9.5 MB 0.67. 7.9 MB 0.60. 7.2 MB 0.58. 5.6 MB 0.46.">
+              <div class="hb"><span>14.3 MB</span><div class="track"><u style="width:78.2%;background:var(--line)"></u></div><b>0.78</b></div>
+              <div class="hb pick"><span>11.1 MB (chosen)</span><div class="track"><u style="width:70.7%;background:var(--accent)"></u></div><b>0.71</b></div>
+              <div class="hb"><span>9.5 MB</span><div class="track"><u style="width:67.3%;background:var(--line)"></u></div><b>0.67</b></div>
+              <div class="hb"><span>7.9 MB</span><div class="track"><u style="width:60.4%;background:var(--line)"></u></div><b>0.60</b></div>
+              <div class="hb"><span>7.2 MB</span><div class="track"><u style="width:57.9%;background:var(--line)"></u></div><b>0.58</b></div>
+              <div class="hb"><span>5.6 MB</span><div class="track"><u style="width:45.7%;background:var(--line)"></u></div><b>0.46</b></div>
+            </div>
+            <p class="cap">Share of the right passages found in the top 10 (Recall@10). Higher is better.</p>
+          </div>
+          <div class="chart-block">
+            <p class="chart-title">Memory the index needs</p>
+            <div class="hbars" role="img" aria-label="Index memory. Full uncompressed index 307 MB. My chosen index 11.1 MB.">
+              <div class="hb"><span>Full index</span><div class="track"><u style="width:100%;background:var(--line)"></u></div><b>307 MB</b></div>
+              <div class="hb pick"><span>My index</span><div class="track"><u style="width:3.6%;background:var(--accent)"></u></div><b>11 MB</b></div>
+            </div>
+            <p class="cap">Lower is better. 96% less memory for the same 100K passages.</p>
+          </div>
+        </div>
       </article>
     </div>
 
     <div class="more">
+      <div><b>AI-HOPE multi-agent LLM</b><span>Three AI agents (Clarifier, Planner, Verifier) that answer clinical and genomic questions asked in plain English. I added a vLLM layer so the agents share one cached prompt.</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
       <div><b>FPGA MLP accelerator</b><span>Digit recognition on a Zybo Z7 FPGA. 52,650 parameters quantized to INT8, about 51 KB.</span><a href="https://github.com/UShah1996/240_mlp_fpga">Code →</a></div>
       <div><b>16-bit CPU in software</b><span>Emulator in C99 with my own instruction set, a two-pass assembler, and memory-mapped I/O.</span><a href="https://github.com/UShah1996/cpu-design">Code →</a></div>
       <div><b>QuadKey vacation rentals</b><span>Booking app on FastAPI, PostgreSQL, React, and AWS. I own data and infrastructure. In progress.</span><span class="tags">team of 4</span></div>
