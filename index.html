@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101935'/%3E%3Crect x='12' y='40' width='40' height='9' fill='%23ffd166'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='700' font-size='30' text-anchor='middle' fill='%23fff'%3EUS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Fraunces:opsz,wght@9..144,600&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a bright, short page. The hero pairs the pitch with a playable scheduler (her master's project).
    One saffron highlighter stroke marks what matters; everything else is ink on cool white. */
@@ -30,6 +30,7 @@
   --violet: #8a5cf6;
   --danger: #d6334a;
   --ok: #12805a;
+  --font-headline: "Fraunces", Georgia, "Times New Roman", serif;
   --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -56,7 +57,7 @@ a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline
 /* Hero */
 .hero .container { display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px; align-items: center; padding-top: 36px; padding-bottom: 48px; }
 .eyebrow { font-family: var(--font-mono); font-size: .78rem; color: var(--accent); margin: 0 0 14px; }
-h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.3rem, 5.2vw, 4rem); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 18px; text-wrap: balance; }
+h1 { font-family: var(--font-headline); font-weight: 600; font-variation-settings: 'opsz' 144; font-size: clamp(2.3rem, 5.2vw, 4rem); line-height: 1.06; letter-spacing: -.02em; margin: 0 0 18px; text-wrap: balance; }
 .sub { color: var(--muted); margin: 0 0 22px; max-width: 34em; font-size: 1.04rem; }
 .sub strong { color: var(--ink); font-weight: 600; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
@@ -149,7 +150,9 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; lett
 .who-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
 .who-row .eyebrow { margin: 0; }
 .avatar { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 3px solid var(--surface); box-shadow: 0 0 0 2px var(--mark), 0 10px 24px -14px rgba(16,25,53,.5); flex: none; }
-.portrait { width: 132px; height: 132px; border-radius: 18px; object-fit: cover; object-position: 50% 30%; float: right; margin: 0 0 10px 16px; box-shadow: 0 0 0 2px var(--mark); }
+.path-head { display: flex; align-items: center; gap: 16px; margin-bottom: 4px; }
+.path-head > div { display: flex; flex-direction: column; gap: 4px; }
+.portrait { width: 96px; height: 96px; border-radius: 16px; object-fit: cover; object-position: 50% 30%; flex: none; box-shadow: 0 0 0 2px var(--mark); }
 /* Views */
 .view { display: none; }
 .view.active { display: block; }
@@ -165,9 +168,11 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; lett
 .two-col { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; }
 .card h3 + p { margin-top: 2px; }
 .how { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: .93rem; }
-.facts li { display: grid; grid-template-columns: 110px 1fr; gap: 10px; color: var(--muted); }
-.facts li b { font-family: var(--font-mono); font-weight: 500; font-size: .74rem; color: var(--accent); padding-top: 2px; }
+.facts { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; font-size: .93rem; }
+.facts li { display: flex; flex-direction: column; gap: 2px; padding: 11px 0; border-top: 1px solid var(--line); color: var(--ink); line-height: 1.45; }
+.facts li:first-child { border-top: 0; padding-top: 2px; }
+.facts li:last-child { padding-bottom: 0; }
+.facts li b { font-family: var(--font-mono); font-weight: 500; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
 .bigmail { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.15rem, 2.9vw, 1.9rem); letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
 body[data-view="contact"] .contact { display: none; }
 /* Contact */
@@ -221,7 +226,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
     <div>
       <div class="who-row"><img class="avatar" src="photo.jpg" alt="Photo of Urmi Shah" width="76" height="76"><p class="eyebrow">ML engineer · MS Computer Engineering '27 · Mountain View, CA</p></div>
       <h1>I make language models <span class="hl">run faster</span>, and I study how they <span class="hl">think</span>.</h1>
-      <p class="sub">I'm Urmi. I spent <strong>4+ years shipping ML and data systems</strong> at Mercedes-Benz R&amp;D and TCS. Now I build a scheduler for distributed LLM inference and research transformer internals. I'm looking for <strong>full-time ML and software engineering roles from mid-2027</strong>.</p>
+      <p class="sub">I'm Urmi. I spent <strong>4+ years building full-stack and ML systems</strong> at Mercedes-Benz R&amp;D and TCS. Now I build a scheduler for distributed LLM inference and research transformer internals. I'm looking for <strong>full-time ML and software engineering roles from mid-2027</strong>.</p>
       <div class="cta">
         <a class="btn primary" href="#contact">Get in touch</a>
         <a class="btn" href="#work">See my work</a>
@@ -260,9 +265,9 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
 <div class="container">
   <div class="sec-head"><h2>Featured work</h2><a class="mono" style="font-size:.78rem" href="#work">All 8 projects →</a></div>
   <div class="doors" style="padding-bottom:26px">
+    <a class="door" href="#work"><span class="label">Platform and security</span><b>Self-healing fraud detection</b><span>Real-time card fraud decisions at 150 payments a second. Lost 0 of 43,200 payments when a server went down mid-test.</span></a>
     <a class="door" href="#work"><span class="label">AFib screening · live demo</span><b>CardioWatch</b><span>Tested two models on 4 device cohorts they had never seen. The simple one held up about 3 times better.</span></a>
     <a class="door" href="#work"><span class="label">Zero-shot retrieval</span><b>HyDE at 100K passages</b><span>0.71 Recall@10 at 14.2 ms p99, with 96.4% less index memory.</span></a>
-    <a class="door" href="#work"><span class="label">Multi-agent LLM system</span><b>AI-HOPE</b><span>A vLLM serving layer where three agents share one cached prompt prefix.</span></a>
   </div>
   <div class="doors">
     <a class="door" href="#work"><b>Work</b><span>8 projects with code, results, and a live demo. Health, retrieval, agents, platforms, and hardware.</span><em>Open work →</em></a>
@@ -275,8 +280,34 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
 <main>
 <section id="work" class="view" data-view="work">
   <div class="container">
-    <div class="sec-head"><h2>Selected work</h2><span>all code on GitHub</span></div>
+    <div class="sec-head"><h2>Top highlights</h2><span>all code on GitHub</span></div>
     <div class="grid">
+
+      <article class="card">
+        <span class="label">Platform and security · team of 2</span>
+        <h3>Self-healing fraud detection</h3>
+        <div class="nums"><span class="num"><b>150</b> payments/sec</span><span class="num"><b>0 of 43,200</b> lost in crash test</span><span class="num"><b>2,240</b> attack tests passed</span></div>
+        <p>Approves, reviews or declines each card payment in real time, notices when fraud patterns change, and updates its own model with no downtime. Tested on 590K real card payments. I built and secured the platform: services, streaming, storage, Kubernetes and login security.</p>
+        <div class="foot"><span class="tags">Kubernetes · Kafka · Cassandra · Docker</span><a href="https://github.com/manishav26/Fraud-Detection-Platform">Code →</a></div>
+      </article>
+
+
+      <article class="card">
+        <span class="label">Zero-shot retrieval</span>
+        <h3>HyDE at 100K passages</h3>
+        <div class="nums"><span class="num"><b>0.71</b> Recall@10</span><span class="num"><b>14.2 ms</b> p99</span><span class="num"><b>96.4%</b> less memory</span></div>
+        <p>The search writes a made-up answer first, then finds real passages that resemble it. I scaled it to 100K MS MARCO passages with FAISS IVF-PQ and shrank the index from 307 MB to 11 MB.</p>
+        <div class="foot"><span class="tags">FAISS · Contriever</span><a href="https://github.com/UShah1996/HyDE">Code →</a></div>
+      </article>
+
+      <article class="card">
+        <span class="label">Multi-agent LLM system</span>
+        <h3>AI-HOPE</h3>
+        <div class="nums"><span class="num">Clarifier</span><span class="num">Planner</span><span class="num">Verifier</span></div>
+        <p>Clinical and genomic analysis in plain English, built from the published AI-HOPE design. I added a vLLM serving layer where all three agents share one prompt prefix, so each turn only pays for new tokens.</p>
+        <div class="foot"><span class="tags">vLLM · Llama 3 · FP16</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
+      </article>
+
 
       <article class="card wide">
         <div>
@@ -299,37 +330,13 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
           <p class="cap">AUC on each cohort. Bars run from 0.5 (chance) to 1.0. The Apple Watch set is small (54 recordings).</p>
         </div>
       </article>
-
-      <article class="card">
-        <span class="label">Zero-shot retrieval</span>
-        <h3>HyDE at 100K passages</h3>
-        <div class="nums"><span class="num"><b>0.71</b> Recall@10</span><span class="num"><b>14.2 ms</b> p99</span><span class="num"><b>96.4%</b> less memory</span></div>
-        <p>The search writes a made-up answer first, then finds real passages that resemble it. I scaled it to 100K MS MARCO passages with FAISS IVF-PQ and shrank the index from 307 MB to 11 MB.</p>
-        <div class="foot"><span class="tags">FAISS · Contriever</span><a href="https://github.com/UShah1996/HyDE">Code →</a></div>
-      </article>
-
-      <article class="card">
-        <span class="label">Multi-agent LLM system</span>
-        <h3>AI-HOPE</h3>
-        <div class="nums"><span class="num">Clarifier</span><span class="num">Planner</span><span class="num">Verifier</span></div>
-        <p>Clinical and genomic analysis in plain English, built from the published AI-HOPE design. I added a vLLM serving layer where all three agents share one prompt prefix, so each turn only pays for new tokens.</p>
-        <div class="foot"><span class="tags">vLLM · Llama 3 · FP16</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
-      </article>
-
-      <article class="card">
-        <span class="label">Platform and security · in progress</span>
-        <h3>Self-healing fraud detection</h3>
-        <div class="nums"><span class="num"><b>~590K</b> real transactions</span></div>
-        <p>Scores card transactions in real time, watches itself for concept drift, then retrains and hot-swaps the model with no downtime. I own platform and security in a two-person team.</p>
-        <div class="foot"><span class="tags">Kubernetes · Docker · MLflow</span><a href="https://github.com/manishav26/Fraud-Detection-Platform">Code →</a></div>
-      </article>
     </div>
 
     <div class="more">
       <div><b>FPGA MLP accelerator</b><span>Digit recognition on a Zybo Z7 FPGA. 52,650 parameters quantized to INT8, about 51 KB.</span><a href="https://github.com/UShah1996/240_mlp_fpga">Code →</a></div>
       <div><b>16-bit CPU in software</b><span>Emulator in C99 with my own instruction set, a two-pass assembler, and memory-mapped I/O.</span><a href="https://github.com/UShah1996/cpu-design">Code →</a></div>
       <div><b>QuadKey vacation rentals</b><span>Booking app on FastAPI, PostgreSQL, React, and AWS. I own data and infrastructure. In progress.</span><span class="tags">team of 4</span></div>
-      <div><b>Learning in public</b><span>An autograd engine and a character-level language model, both from scratch.</span><span><a href="https://github.com/UShah1996/micrograd">micrograd</a> · <a href="https://github.com/UShah1996/makemore-bigram">makemore</a></span></div>
+      <div><b>Other learnings</b><span>An autograd engine and a character-level language model, both from scratch.</span><span><a href="https://github.com/UShah1996/micrograd">micrograd</a> · <a href="https://github.com/UShah1996/makemore-bigram">makemore</a></span></div>
     </div>
   </div>
 </section>
@@ -347,7 +354,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       <div class="rw">
         <div class="who"><h3>Cybele Health</h3><small>ML Engineering Intern · Jun to Aug 2026 · San Jose, CA</small></div>
         <div>
-          <p>Built a full-stack referral platform for clinicians and an AI profile-enrichment workflow with confidence scoring and human review.</p>
+          <p>Designed and built an end-to-end referral platform, across architecture, backend, frontend and scaling. Also built an AI profile-enrichment workflow that combines verified data with LLM suggestions, confidence scores and human review.</p>
           <div class="nums"><span class="num">React / TypeScript</span><span class="num">FastAPI</span><span class="num">PostgreSQL</span><span class="num">OpenAI · Deepgram · S3</span></div>
         </div>
       </div>
@@ -362,7 +369,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
         <div class="who"><h3>Tata Consultancy Services</h3><small>System Engineer · Aug 2020 to Jul 2023 · Mumbai</small></div>
         <div>
           <p>Built data pipelines that pull raw sales data from several sources, clean and combine millions of records, and store them on AWS. Built a REST API (Spring Boot) to share the data and automated testing for quarterly releases.</p>
-          <div class="nums"><span class="num">Spark · SQL · SAP BODS</span><span class="num">AWS S3 · DynamoDB</span><span class="num"><b>+25%</b> faster processing</span><span class="num"><b>+20%</b> release velocity</span></div>
+          <div class="nums"><span class="num">Apache Spark</span><span class="num">AWS S3 · DynamoDB</span><span class="num"><b>+25%</b> faster processing</span><span class="num"><b>+20%</b> release velocity</span></div>
         </div>
       </div>
     </div>
@@ -373,7 +380,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       <div><b>Teaching Assistant</b>C++ and Data Structures, and graduate writing, at SJSU</div>
     </div>
     <div class="how">
-      <div class="card"><span class="label">Stack</span><p><strong>Languages:</strong> Python, C++, C, SQL, Java, TypeScript</p><p><strong>ML and LLMs:</strong> PyTorch, Hugging Face, vLLM, Apple MLX, FAISS, scikit-learn, XGBoost, MLflow, RAG, agentic pipelines</p><p><strong>Data and infra:</strong> Spark, Databricks, PostgreSQL, Cassandra, AWS, Azure, Docker, Kubernetes, FastAPI, GitHub Actions</p></div>
+      <div class="card"><span class="label">Stack</span><p><strong>Languages:</strong> Python, Java, SQL, JavaScript, C++, C, Bash</p><p><strong>ML and AI:</strong> PyTorch, Hugging Face, LLMs, RAG, AI agents, vLLM, Apple MLX, FAISS, scikit-learn, LightGBM, XGBoost, MLflow</p><p><strong>Platform and data:</strong> Docker, Kubernetes, Kafka, CI/CD, Grafana, AWS, Azure Databricks, Spark, PostgreSQL, Cassandra, FastAPI</p></div>
       <div class="card"><span class="label">Certifications and earlier work</span><p>DeepLearning.AI Machine Learning Specialization (2026)</p><p>Applied Machine Learning in Python, University of Michigan (2026)</p><p>SAP Certified Associate, SAP Analytics Cloud: Planning</p><p>Genomic data pipelines at CSIR that improved assembly accuracy by 20%</p></div>
     </div>
   </div>
@@ -384,31 +391,33 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
     <div class="sec-head"><h2>About me</h2><span>the person behind the projects</span></div>
     <div class="two-col">
       <div class="card">
-        <span class="label">My path</span>
-        <h3>From genomes to GPUs</h3>
-        <p><img class="portrait" src="photo.jpg" alt="Photo of Urmi Shah" width="132" height="132">I started in bioinformatics. I published a paper on HIV-1 protein interactions and built genomic data pipelines. That work taught me that the data pipeline decides if the science is any good.</p>
+        <div class="path-head">
+          <img class="portrait" src="photo.jpg" alt="Photo of Urmi Shah" width="96" height="96">
+          <div><span class="label">My path</span><h3>From genomes to GPUs</h3></div>
+        </div>
+        <p>I started in bioinformatics. I published a paper on HIV-1 protein interactions and built genomic data pipelines. That work taught me that the data pipeline decides if the science is any good.</p>
         <p>I then spent 4+ years in industry at Tata Consultancy Services and Mercedes-Benz R&amp;D, building Spark pipelines, forecasting models, and an LLM service used by 1K+ people.</p>
         <p>I came to San José State for my MS to go deeper. Today I like the systems side of ML most: <strong>making models fast, reliable, and cheap to serve</strong>.</p>
       </div>
       <div class="card">
-        <span class="label">Quick facts</span>
+        <span class="label">At a glance</span>
         <ul class="facts">
           <li><b>Looking for</b><span>Full-time new-grad roles in ML engineering, ML infrastructure, or software engineering</span></li>
           <li><b>Start</b><span>Mid-2027, after I graduate in May 2027</span></li>
           <li><b>Based in</b><span>Mountain View, CA. Bay Area preferred, open to anywhere in the US</span></li>
-          <li><b>Now</b><span>Building Weave, doing transformer research, and teaching two courses</span></li>
+          <li><b>Right now</b><span>Building Weave, doing transformer research, and teaching two courses</span></li>
           <li><b>Talk to me about</b><span>LLM inference, RAG, and ML systems</span></li>
         </ul>
       </div>
     </div>
-    <div class="sec-head" style="margin-top:34px"><h2>How I work</h2><span>shown, not claimed</span></div>
+    <div class="sec-head" style="margin-top:34px"><h2>Beyond the resume</h2><span>a little more about me</span></div>
     <div class="how">
-      <div class="card"><h3>I love teaching</h3><p>I am a teaching assistant for two courses at SJSU: C++ and Data Structures, and graduate technical writing. Explaining a hard idea simply is my favorite part of the job. At TCS I presented model benchmarks to client stakeholders every release cycle.</p></div>
       <div class="card"><h3>I step up to lead</h3><p>In my second year at DY Patil University I was the technical lead on a project to build biodegradable sanitary napkins in the REDX club (Rethinking Engineering Design Execution), part of the innovation network that began at the MIT Media Lab. In my third year I was Scientific Secretary: I organized the technical fest, ran hackathons, and set up technical workshops with industry leaders. Before college I was school captain.</p></div>
-      <div class="card"><h3>I own my part of a team</h3><p>On Weave (team of 3) I own the placement policies. On the fraud platform (team of 2) I own platform and security. On QuadKey (Scrum team of 4) I own data and infrastructure.</p></div>
-      <div class="card"><h3>I report what I find, even when it is not flattering</h3><p>In CardioWatch my deep model won in the lab and then struggled on other devices. I made that the headline finding instead of hiding it.</p></div>
-      <div class="card"><h3>I keep learning in public</h3><p>I rebuilt an autograd engine and a character-level language model from scratch, wrote a 16-bit CPU emulator, and finished two ML certifications in 2026.</p></div>
-      <div class="card"><h3>Outside work</h3><p>I practiced Bharatanatyam for 6 years and I play the piano. Both taught me that skill comes from steady practice. I also hike and train regularly, which is where I do my best thinking.</p></div>
+      <div class="card"><h3>I love learning beyond the classroom</h3><p>Outside my courses I rebuilt an autograd engine and a character-level language model from scratch, wrote a 16-bit CPU emulator, and finished two ML certifications in 2026.</p></div>
+      <div class="card"><h3>When I'm not working or learning</h3><p>I practiced Bharatanatyam for 6 years and I play the piano. Both taught me that skill comes from steady practice. I also hike and train regularly, which is where I do my best thinking.</p></div>
+      <div class="card"><h3>I love working with a team</h3><p>Most of my best work has been team work. On Weave (team of 3) I own the placement logic, on the fraud platform (team of 2) I own platform and security, and on QuadKey (Scrum team of 4) I own data and infrastructure. I like having a clear part to own and seeing how it fits with everyone else's.</p></div>
+      <div class="card"><h3>I love studying how systems work</h3><p>I like to understand why a system behaves the way it does, not just make it run. That curiosity pulled me into robotics research, testing whether AI agents can combine skills they learned one at a time, and into studying what happens inside language models from one layer to the next. I bring the same habit to engineering: measure first, then change things.</p></div>
+      <div class="card"><h3>Helping fellow students</h3><p>I am a teaching assistant for two courses at SJSU: C++ and Data Structures, and graduate technical writing. Explaining a hard idea simply, so a stuck student can move forward, is my favorite part of the job.</p></div>
     </div>
   </div>
 </section>
