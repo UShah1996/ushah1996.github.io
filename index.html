@@ -208,6 +208,8 @@ canvas.ecg.small { height: 46px; margin: 4px 0 0; }
 .facts li:first-child { border-top: 0; padding-top: 2px; }
 .facts li:last-child { padding-bottom: 0; }
 .facts li b { font-family: var(--font-mono); font-weight: 500; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.mails a { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.mails a:hover { color: var(--accent); text-decoration: underline; }
 .bigmail { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.15rem, 2.9vw, 1.9rem); letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
 body[data-view="contact"] .contact { display: none; }
 /* Contact */
@@ -495,7 +497,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       <div class="card">
         <span class="label">At a glance</span>
         <ul class="facts">
-          <li><b>Looking for</b><span>Full-time new-grad roles in ML engineering, ML infrastructure, or software engineering</span></li>
+          <li><b>Looking for</b><span>Full-time roles in ML engineering, AI engineering, ML infrastructure, or software engineering</span></li>
           <li><b>Start</b><span>Mid-2027, after I graduate in May 2027</span></li>
           <li><b>Based in</b><span>Mountain View, CA. Bay Area preferred, open to anywhere in the US</span></li>
           <li><b>Right now</b><span>Building Weave, doing transformer research, and teaching two courses</span></li>
@@ -517,12 +519,14 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
 
 <section id="contact" class="view" data-view="contact">
   <div class="container">
-    <div class="sec-head"><h2>Contact</h2><span>email is fastest</span></div>
+    <div class="sec-head"><h2>Contact</h2></div>
     <div class="two-col">
       <div class="card">
         <span class="label">Email</span>
-        <a class="bigmail" href="mailto:urmimshah96@gmail.com">urmimshah96@gmail.com</a>
-        <p>University: <a href="mailto:urmimanishkumar.shah@sjsu.edu">urmimanishkumar.shah@sjsu.edu</a></p>
+        <ul class="facts mails">
+          <li><b>Personal</b><a href="mailto:urmimshah96@gmail.com">urmimshah96@gmail.com</a></li>
+          <li><b>University</b><a href="mailto:urmimanishkumar.shah@sjsu.edu">urmimanishkumar.shah@sjsu.edu</a></li>
+        </ul>
         <div class="cta" style="margin:10px 0 0">
           <a class="btn primary" href="https://linkedin.com/in/urmi-shah-2910">LinkedIn</a>
           <a class="btn" href="https://github.com/UShah1996">GitHub</a>
@@ -533,7 +537,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       <div class="card">
         <span class="label">What I'm open to</span>
         <ul class="facts">
-          <li><b>Roles</b><span>ML engineer, ML infrastructure, software engineer (new grad)</span></li>
+          <li><b>Roles</b><span>ML engineer, AI engineer, ML infrastructure, software engineer</span></li>
           <li><b>Start</b><span>Mid-2027</span></li>
           <li><b>Location</b><span>Mountain View, CA. Bay Area preferred, open to anywhere in the US</span></li>
           <li><b>Also happy to</b><span>Chat about LLM inference, RAG, and ML systems</span></li>
@@ -548,7 +552,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
   <div class="container">
     <div>
       <h2>Hiring for 2027? Let's talk.</h2>
-      <p>ML engineering, ML infrastructure, and software engineering roles, starting mid-2027.</p>
+      <p>ML engineering, AI engineering, ML infrastructure, and software engineering roles, starting mid-2027.</p>
     </div>
     <div>
       <a class="mail" href="mailto:urmimshah96@gmail.com">urmimshah96@gmail.com</a>
