@@ -136,6 +136,12 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; lett
 .more span { color: var(--muted); }
 .more a { font-family: var(--font-mono); font-size: .78rem; white-space: nowrap; }
 
+.card.span2 { grid-column: span 2; }
+.hbars { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+.hb { display: grid; grid-template-columns: 150px 1fr 64px; gap: 10px; align-items: center; font-size: .78rem; color: var(--muted); }
+.hb .track { height: 12px; }
+.hb b { font-family: var(--font-mono); font-weight: 500; font-size: .74rem; color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
+.hb.pick span { color: var(--ink); font-weight: 600; }
 /* Background rows */
 .rows { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
 .rw { display: grid; grid-template-columns: 230px 1fr; gap: 22px; padding: 16px 20px; border-top: 1px solid var(--line); }
@@ -189,6 +195,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
   .hero .container { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; }
   .grid, .doors, .two-col, .how { grid-template-columns: 1fr; }
   .card.wide { grid-template-columns: 1fr; }
+  .card.span2 { grid-column: auto; }
   .edu { grid-template-columns: 1fr 1fr; }
   .contact .container { grid-template-columns: 1fr; align-items: start; }
 }
@@ -201,6 +208,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
   .rw { grid-template-columns: 1fr; gap: 6px; }
   .more div { grid-template-columns: 1fr; gap: 2px; }
   .pair { grid-template-columns: 88px 1fr; }
+  .hb { grid-template-columns: 96px 1fr 52px; font-size: .74rem; }
   .sim { padding: 16px; }
 }
 </style>
@@ -234,9 +242,9 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       </div>
       <div class="stats">
         <div><b>4+ yrs</b><span>in industry</span></div>
+        <div><b>3.94</b><span>MS GPA at SJSU</span></div>
         <div><b>1K+</b><span>users on my RAG service</span></div>
         <div><b>12M+</b><span>connected cars served</span></div>
-        <div><b>3.94</b><span>MS GPA at SJSU</span></div>
       </div>
     </div>
 
@@ -258,14 +266,14 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
         <div class="verdict" id="vStatic"><small>Equal split (baseline)</small><span></span></div>
       </div>
       <p>I own the placement policies, the "how many Macs" decision, and the ablation design. Built on MLX and JACCL (RDMA over Thunderbolt 5), team of three. <a href="https://github.com/JNR-10/weave">Code →</a></p>
-      <p class="fine">Simplified teaching model on an example cluster. Not Weave's real policy or results.</p>
+      <p class="fine">Simplified demo on an example cluster.</p>
     </div>
   </div>
 </div>
 <div class="container">
   <div class="sec-head"><h2>Featured work</h2><a class="mono" style="font-size:.78rem" href="#work">All 8 projects →</a></div>
   <div class="doors" style="padding-bottom:26px">
-    <a class="door" href="#work"><span class="label">Platform and security</span><b>Self-healing fraud detection</b><span>Real-time card fraud decisions at 150 payments a second. Lost 0 of 43,200 payments when a server went down mid-test.</span></a>
+    <a class="door" href="#work"><span class="label">Platform and security · AWS</span><b>Self-healing fraud detection</b><span>Real-time card fraud decisions on AWS at 150 payments a second. Lost 0 of 43,200 payments when a server went down mid-test.</span></a>
     <a class="door" href="#work"><span class="label">AFib screening · live demo</span><b>CardioWatch</b><span>Tested two models on 4 device cohorts they had never seen. The simple one held up about 3 times better.</span></a>
     <a class="door" href="#work"><span class="label">Zero-shot retrieval</span><b>HyDE at 100K passages</b><span>0.71 Recall@10 at 14.2 ms p99, with 96.4% less index memory.</span></a>
   </div>
@@ -283,39 +291,13 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
     <div class="sec-head"><h2>Top highlights</h2><span>all code on GitHub</span></div>
     <div class="grid">
 
-      <article class="card">
-        <span class="label">Platform and security · team of 2</span>
-        <h3>Self-healing fraud detection</h3>
-        <div class="nums"><span class="num"><b>150</b> payments/sec</span><span class="num"><b>0 of 43,200</b> lost in crash test</span><span class="num"><b>2,240</b> attack tests passed</span></div>
-        <p>Approves, reviews or declines each card payment in real time, notices when fraud patterns change, and updates its own model with no downtime. Tested on 590K real card payments. I built and secured the platform: services, streaming, storage, Kubernetes and login security.</p>
-        <div class="foot"><span class="tags">Kubernetes · Kafka · Cassandra · Docker</span><a href="https://github.com/manishav26/Fraud-Detection-Platform">Code →</a></div>
-      </article>
-
-
-      <article class="card">
-        <span class="label">Zero-shot retrieval</span>
-        <h3>HyDE at 100K passages</h3>
-        <div class="nums"><span class="num"><b>0.71</b> Recall@10</span><span class="num"><b>14.2 ms</b> p99</span><span class="num"><b>96.4%</b> less memory</span></div>
-        <p>The search writes a made-up answer first, then finds real passages that resemble it. I scaled it to 100K MS MARCO passages with FAISS IVF-PQ and shrank the index from 307 MB to 11 MB.</p>
-        <div class="foot"><span class="tags">FAISS · Contriever</span><a href="https://github.com/UShah1996/HyDE">Code →</a></div>
-      </article>
-
-      <article class="card">
-        <span class="label">Multi-agent LLM system</span>
-        <h3>AI-HOPE</h3>
-        <div class="nums"><span class="num">Clarifier</span><span class="num">Planner</span><span class="num">Verifier</span></div>
-        <p>Clinical and genomic analysis in plain English, built from the published AI-HOPE design. I added a vLLM serving layer where all three agents share one prompt prefix, so each turn only pays for new tokens.</p>
-        <div class="foot"><span class="tags">vLLM · Llama 3 · FP16</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
-      </article>
-
-
       <article class="card wide">
         <div>
           <span class="label">AFib screening from wearable ECG</span>
           <h3>CardioWatch</h3>
           <canvas id="ecg" aria-hidden="true"></canvas>
-          <p>Undiagnosed AFib is a preventable cause of stroke. I trained a CNN-LSTM on hospital ECGs and a simpler heartbeat-timing model, then tested both on devices they had never seen.</p>
-          <p><strong>What I found:</strong> the deep model wins in the lab, then swings widely on other devices. The simple model varies about 3 times less. Lab accuracy did not predict real-world behavior.</p>
+          <p>Screens for AFib, a hidden cause of stroke, from wearable ECG. I tested a deep model and a simple heartbeat-timing model on devices neither had seen.</p>
+          <p><strong>Finding:</strong> the deep model wins in the lab but swings on new devices. The simple one varies about 3 times less.</p>
           <div class="foot"><span class="tags">PyTorch · XGBoost · SHAP · MLflow · Streamlit</span><span><a href="https://cardiowatch-spring2026.streamlit.app">Live demo →</a> &nbsp; <a href="https://github.com/UShah1996/cardiowatch">Code →</a></span></div>
         </div>
         <div>
@@ -329,6 +311,49 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
           </div>
           <p class="cap">AUC on each cohort. Bars run from 0.5 (chance) to 1.0. The Apple Watch set is small (54 recordings).</p>
         </div>
+      </article>
+
+      <article class="card wide">
+        <div>
+          <span class="label">Platform and security · AWS · team of 2</span>
+          <h3>Self-healing fraud detection</h3>
+          <p>Approves, reviews or declines each card payment in real time, spots when fraud patterns change, and swaps in a retrained model with no downtime. I built and secured the platform.</p>
+          <div class="nums"><span class="num"><b>590K</b> real payments</span><span class="num"><b>0 of 43,200</b> lost when a server died</span><span class="num"><b>2,240</b> attack tests passed</span></div>
+          <div class="foot"><span class="tags">AWS EC2 · Kubernetes · Kafka · Cassandra · Grafana</span><a href="https://github.com/manishav26/Fraud-Detection-Platform">Code →</a></div>
+        </div>
+        <div>
+          <div class="hbars" role="img" aria-label="Payments scored per second. Laptop cluster 30. AWS 3-node cluster 150 within all speed targets. AWS 8 cores peak about 250. AWS 16 cores about 450.">
+            <div class="hb"><span>Laptop cluster</span><div class="track"><u style="width:6.7%;background:var(--line)"></u></div><b>30/s</b></div>
+            <div class="hb pick"><span>AWS, 3 nodes</span><div class="track"><u style="width:33.3%;background:var(--accent)"></u></div><b>150/s</b></div>
+            <div class="hb"><span>AWS, 8 cores (peak)</span><div class="track"><u style="width:55.6%;background:var(--amber)"></u></div><b>~250/s</b></div>
+            <div class="hb"><span>AWS, 16 cores</span><div class="track"><u style="width:100%;background:var(--amber)"></u></div><b>~450/s</b></div>
+          </div>
+          <p class="cap">Payments scored per second. At 150/s on AWS, 95% got an answer in 97 ms.</p>
+        </div>
+      </article>
+
+      <article class="card span2">
+        <span class="label">Zero-shot search</span>
+        <h3>HyDE at 100K passages</h3>
+        <p>Drafts a likely answer first, then finds real passages that match it, with no labeled data. I tested 6 index sizes to find the best trade-off.</p>
+        <div class="hbars" role="img" aria-label="Recall at 10 by index size. 14.3 MB 0.78. 11.1 MB 0.71, chosen. 9.5 MB 0.67. 7.9 MB 0.60. 7.2 MB 0.58. 5.6 MB 0.46. Full index is 307 MB.">
+          <div class="hb"><span>14.3 MB index</span><div class="track"><u style="width:78.2%;background:var(--line)"></u></div><b>0.78</b></div>
+          <div class="hb pick"><span>11.1 MB (chosen)</span><div class="track"><u style="width:70.7%;background:var(--accent)"></u></div><b>0.71</b></div>
+          <div class="hb"><span>9.5 MB</span><div class="track"><u style="width:67.3%;background:var(--line)"></u></div><b>0.67</b></div>
+          <div class="hb"><span>7.9 MB</span><div class="track"><u style="width:60.4%;background:var(--line)"></u></div><b>0.60</b></div>
+          <div class="hb"><span>7.2 MB</span><div class="track"><u style="width:57.9%;background:var(--line)"></u></div><b>0.58</b></div>
+          <div class="hb"><span>5.6 MB</span><div class="track"><u style="width:45.7%;background:var(--line)"></u></div><b>0.46</b></div>
+        </div>
+        <p class="cap">Share of the right passages found in the top 10 (Recall@10). The uncompressed index is 307 MB.</p>
+        <div class="foot"><span class="tags">FAISS · Contriever</span><a href="https://github.com/UShah1996/HyDE">Code →</a></div>
+      </article>
+
+      <article class="card">
+        <span class="label">Multi-agent LLM system</span>
+        <h3>AI-HOPE</h3>
+        <div class="nums"><span class="num">Clarifier</span><span class="num">→ Planner</span><span class="num">→ Verifier</span></div>
+        <p>Clinical and genomic analysis in plain English. I added a vLLM layer so all three agents share one cached prompt, and each turn only pays for new words.</p>
+        <div class="foot"><span class="tags">vLLM · Llama 3</span><a href="https://github.com/UShah1996/AI-HOPE">Code →</a></div>
       </article>
     </div>
 
