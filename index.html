@@ -208,8 +208,15 @@ canvas.ecg.small { height: 46px; margin: 4px 0 0; }
 .facts li:first-child { border-top: 0; padding-top: 2px; }
 .facts li:last-child { padding-bottom: 0; }
 .facts li b { font-family: var(--font-mono); font-weight: 500; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-.mails a { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
-.mails a:hover { color: var(--accent); text-decoration: underline; }
+.facts.mails { flex: 1; }
+.facts.mails li { flex: 1; justify-content: center; }
+.facts.mails li:first-child { justify-content: flex-start; }
+.facts.mails li:last-child { justify-content: flex-end; padding-bottom: 0; }
+.mails .cta a { font-family: var(--font-mono); font-weight: 400; font-size: .82rem; }
+.mails .cta a.primary, .mails .cta a.primary:hover { color: #fff; text-decoration: none; }
+.mails .cta a:hover { text-decoration: none; }
+.mails > li > a { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.mails > li > a:hover { color: var(--accent); text-decoration: underline; }
 .bigmail { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.15rem, 2.9vw, 1.9rem); letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
 body[data-view="contact"] .contact { display: none; }
 /* Contact */
@@ -526,12 +533,12 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
         <ul class="facts mails">
           <li><b>Personal</b><a href="mailto:urmimshah96@gmail.com">urmimshah96@gmail.com</a></li>
           <li><b>University</b><a href="mailto:urmimanishkumar.shah@sjsu.edu">urmimanishkumar.shah@sjsu.edu</a></li>
+          <li><b>Profiles</b><span class="cta" style="margin:4px 0 0">
+            <a class="btn primary" href="https://linkedin.com/in/urmi-shah-2910">LinkedIn</a>
+            <a class="btn" href="https://github.com/UShah1996">GitHub</a>
+            <a class="btn" href="Urmi_Shah_Resume.pdf">Resume (PDF)</a>
+          </span></li>
         </ul>
-        <div class="cta" style="margin:10px 0 0">
-          <a class="btn primary" href="https://linkedin.com/in/urmi-shah-2910">LinkedIn</a>
-          <a class="btn" href="https://github.com/UShah1996">GitHub</a>
-          <a class="btn" href="Urmi_Shah_Resume.pdf">Resume (PDF)</a>
-        </div>
       </div>
       <div class="card">
         <span class="label">What I'm open to</span>
