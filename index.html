@@ -117,7 +117,23 @@ h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; lett
 
 .card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 .card.wide > div { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
-#ecg { width: 100%; height: 52px; display: block; }
+canvas.ecg { width: 100%; height: 52px; display: block; }
+canvas.ecg.small { height: 46px; margin: 4px 0 0; }
+.roles { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.role { font-family: var(--font-mono); font-size: .72rem; padding: 3px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); }
+.timeline { display: grid; grid-template-columns: repeat(5, 1fr); margin: 0 0 34px; }
+.tl { position: relative; padding: 24px 14px 0 0; display: flex; flex-direction: column; gap: 2px; }
+.tl::before { content: ""; position: absolute; top: 6px; left: 0; right: 0; height: 2px; background: var(--line); }
+.tl::after { content: ""; position: absolute; top: 1px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.tl.now::after { background: var(--mark); border-color: var(--ink); }
+.tl:last-child::before { right: auto; width: 40px; background: linear-gradient(90deg, var(--line), transparent); }
+.tl small { font-family: var(--font-mono); font-size: .7rem; color: var(--accent); }
+.tl b { font-family: var(--font-display); font-size: 1rem; letter-spacing: -.01em; }
+.tl span { font-size: .84rem; color: var(--muted); line-height: 1.4; }
+.mini { height: 46px; display: flex; align-items: flex-end; gap: 5px; margin: 4px 0 0; }
+.mini i { flex: 1; background: var(--line); border-radius: 3px 3px 0 0; min-height: 3px; }
+.mini i.on { background: var(--accent); }
+.door .mini-cap, .mini-cap { font-family: var(--font-mono); font-size: .68rem; color: var(--muted); }
 .legend { display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--font-mono); font-size: .7rem; color: var(--muted); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
 .pairs { display: flex; flex-direction: column; gap: 8px; }
@@ -194,6 +210,11 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
 @media (max-width: 920px) {
   .hero .container { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; }
   .grid, .doors, .two-col, .how { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr; gap: 14px; }
+  .tl { padding: 0 0 0 22px; }
+  .tl::before { top: 4px; bottom: -18px; left: 5px; right: auto; width: 2px; height: auto; }
+  .tl:last-child::before { display: none; }
+  .tl::after { top: 3px; }
   .card.wide { grid-template-columns: 1fr; }
   .card.span2 { grid-column: auto; }
   .edu { grid-template-columns: 1fr 1fr; }
@@ -232,7 +253,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
 <div class="hero" id="top">
   <div class="container">
     <div>
-      <div class="who-row"><img class="avatar" src="photo.jpg" alt="Photo of Urmi Shah" width="76" height="76"><p class="eyebrow">ML engineer · MS Computer Engineering '27 · Mountain View, CA</p></div>
+      <div class="who-row"><img class="avatar" src="photo.jpg" alt="Photo of Urmi Shah" width="76" height="76"><div><p class="eyebrow">MS Computer Engineering '27 · Mountain View, CA</p><div class="roles" aria-label="Roles"><span class="role">ML Engineer</span><span class="role">AI Engineer</span><span class="role">Platform Engineer</span></div></div></div>
       <h1>I make language models <span class="hl">run faster</span>, and I study how they <span class="hl">think</span>.</h1>
       <p class="sub">I'm Urmi. I spent <strong>4+ years building full-stack and ML systems</strong> at Mercedes-Benz R&amp;D and TCS. Now I build a scheduler for distributed LLM inference and research transformer internals. I'm looking for <strong>full-time ML and software engineering roles from mid-2027</strong>.</p>
       <div class="cta">
@@ -271,11 +292,19 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
   </div>
 </div>
 <div class="container">
+  <div class="sec-head"><h2>My path so far</h2><a class="mono" style="font-size:.78rem" href="#background">Full background →</a></div>
+  <div class="timeline">
+    <div class="tl"><small>2016 to 2020</small><b>Bioinformatics</b><span>B.Tech at DY Patil University, published research</span></div>
+    <div class="tl"><small>2020 to 2023</small><b>TCS</b><span>System Engineer: data pipelines on Spark and AWS</span></div>
+    <div class="tl"><small>2023 to 2024</small><b>Mercedes-Benz R&amp;D</b><span>Software Engineer: AI tools and connected-car cloud</span></div>
+    <div class="tl"><small>2025 to 2027</small><b>SJSU and Cybele Health</b><span>MS in ML, research, ML engineering internship</span></div>
+    <div class="tl now"><small>2027</small><b>Your team?</b><span>Open to full-time roles from mid-2027</span></div>
+  </div>
   <div class="sec-head"><h2>Featured work</h2><a class="mono" style="font-size:.78rem" href="#work">All 8 projects →</a></div>
   <div class="doors" style="padding-bottom:26px">
-    <a class="door" href="#work"><span class="label">Platform and security · AWS</span><b>Self-healing fraud detection</b><span>Real-time card fraud decisions on AWS at 150 payments a second. Lost 0 of 43,200 payments when a server went down mid-test.</span></a>
-    <a class="door" href="#work"><span class="label">AFib screening · live demo</span><b>CardioWatch</b><span>Tested two models on 4 device cohorts they had never seen. The simple one held up about 3 times better.</span></a>
-    <a class="door" href="#work"><span class="label">Zero-shot retrieval</span><b>HyDE at 100K passages</b><span>0.71 Recall@10 at 14.2 ms p99, with 96.4% less index memory.</span></a>
+    <a class="door" href="#work"><span class="label">Platform and security · AWS</span><b>Self-healing fraud detection</b><div class="mini" role="img" aria-label="Payments per second: 30 on a laptop, 150 on AWS, about 250 and 450 with more cores"><i style="height:7%"></i><i class="on" style="height:33%"></i><i style="height:56%"></i><i style="height:100%"></i></div><span class="mini-cap">payments/sec: 30 → 150 → 450</span><span>Real-time card fraud decisions on AWS at 150 payments a second. Lost 0 of 43,200 payments when a server went down mid-test.</span></a>
+    <a class="door" href="#work"><span class="label">AFib screening · live demo</span><b>CardioWatch</b><canvas class="ecg small" aria-hidden="true"></canvas><span class="mini-cap">normal rhythm → AFib</span><span>Tested two models on 4 device cohorts they had never seen. The simple one held up about 3 times better.</span></a>
+    <a class="door" href="#work"><span class="label">Zero-shot retrieval</span><b>HyDE at 100K passages</b><div class="mini" role="img" aria-label="Search quality by index size, the chosen size highlighted"><i style="height:78%"></i><i class="on" style="height:71%"></i><i style="height:67%"></i><i style="height:60%"></i><i style="height:58%"></i><i style="height:46%"></i></div><span class="mini-cap">search quality by index size</span><span>0.71 Recall@10 at 14.2 ms p99, with 96.4% less index memory.</span></a>
   </div>
   <div class="doors">
     <a class="door" href="#work"><b>Work</b><span>8 projects with code, results, and a live demo. Health, retrieval, agents, platforms, and hardware.</span><em>Open work →</em></a>
@@ -295,7 +324,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
         <div>
           <span class="label">AFib screening from wearable ECG</span>
           <h3>CardioWatch</h3>
-          <canvas id="ecg" aria-hidden="true"></canvas>
+          <canvas class="ecg" aria-hidden="true"></canvas>
           <p>Screens for AFib, a hidden cause of stroke, from wearable ECG. I tested a deep model and a simple heartbeat-timing model on devices neither had seen.</p>
           <p><strong>Finding:</strong> the deep model wins in the lab but swings on new devices. The simple one varies about 3 times less.</p>
           <div class="foot"><span class="tags">PyTorch · XGBoost · SHAP · MLflow · Streamlit</span><span><a href="https://cardiowatch-spring2026.streamlit.app">Live demo →</a> &nbsp; <a href="https://github.com/UShah1996/cardiowatch">Code →</a></span></div>
@@ -562,13 +591,15 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
 
 /* ---------- ECG sketch (decorative, synthetic) ---------- */
 (function () {
-  var c = document.getElementById('ecg'), x = c.getContext('2d'), dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
   function beat(u) {
     var g = function (m, s, a) { return a * Math.exp(-Math.pow((u - m) / s, 2)); };
     return g(0.18, 0.035, 0.12) - g(0.36, 0.012, 0.18) + g(0.40, 0.014, 1) - g(0.44, 0.014, 0.28) + g(0.66, 0.06, 0.24);
   }
-  function draw() {
-    var r = c.getBoundingClientRect(), W = r.width, H = r.height;
+  function drawAll() { document.querySelectorAll('canvas.ecg').forEach(draw); }
+  function draw(c) {
+    var x = c.getContext('2d'), r = c.getBoundingClientRect(), W = r.width, H = r.height;
+    if (!W) return;
     c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
     x.clearRect(0, 0, W, H); x.lineWidth = 1.6; x.lineJoin = 'round';
     var period = 70, split = W * 0.6;
@@ -583,7 +614,7 @@ footer { padding: 16px 0; font-family: var(--font-mono); font-size: .72rem; colo
       x.stroke();
     });
   }
-  draw(); var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  drawAll(); var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
 })();
 </script>
 </body>
